@@ -10,4 +10,16 @@ services:
     ports:
       - "3306:3306" 
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  metabase:
+    image: metabase/metabase
+    environment:
+      - MB_DB_TYPE=mysql
+      - MB_DB_DBNAME=hogwarts
+      - MB_DB_PORT=3306
+      - MB_DB_USER=admin
+      - MB_DB_PASS=admin
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql

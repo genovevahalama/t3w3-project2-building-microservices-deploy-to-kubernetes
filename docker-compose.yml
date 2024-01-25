@@ -1,7 +1,7 @@
 version: '3'
 services:
   python-app:
-    build: .
+    build: ./mongodb_loader
     container_name: python-container
     volumes:
       - .:/app

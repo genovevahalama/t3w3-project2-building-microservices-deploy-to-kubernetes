@@ -9,13 +9,15 @@ how and what to do:
 
 Commands for docker compose
 
-```docker-compose build
+```
+docker-compose build
 docker-compose up
 docker-compose down
 ```
 Steps to check mysql container
 
-```docker ps
+```
+docker ps
 docker exec -it mysql-container bash
 mysql -u admin -padmin
 USE hogwarts;
@@ -25,7 +27,8 @@ SELECT * FROM Spells;
 ```
 Steps to check mongodb container
 
-```docker ps
+```
+docker ps
 docker exec -it mongodb-container mongosh
 show dbs
 use hogwarts 

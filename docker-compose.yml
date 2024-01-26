@@ -1,26 +1,42 @@
 version: '3'
 services:
-  python-app:
-    build: ./mongodb_loader
-    container_name: python-container
-    volumes:
-      - .:/app
-    networks:
-      - app-network
+  # python-app:
+  #   build: ./mongodb_loader
+  #   container_name: python-container
+  #   volumes:
+  #     - .:/app
+  #   networks:
+  #     - app-network
   mongodb:
-    image: mongo
     container_name: mongodb-container
+    image: mongo
     volumes:
       - ./datamongodb:/data/db
     ports:
       - "27017:27017"
     networks:
       - app-network
-  etl-app:
-    build: .
-    container_name: etl-container
+  init-mongodb-data-fetcher:
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - mongodb
+    command: python mongodb_loader/datafetch_load_mongodb.py  
     volumes:
-      - .:/app
+      - ./mongodb_loader:/app/mongodb_loader 
+    networks:
+      - app-network
+  etl-app:
+    container_name: etl-container
+    build:
+      context: ./mysql_loader
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    volumes:
+      - ./mysql_loader:/app/mysql_loader
+    command: python /app/mysql_loader/datatransfer_mongodb_mysql.py
     networks:
       - app-network
   mysql:

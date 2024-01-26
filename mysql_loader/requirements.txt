@@ -1,0 +1,5 @@
+pymongo
+requests
+pandas
+pyarrow
+mysql-connector-python

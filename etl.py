@@ -32,6 +32,7 @@ mysql_cursor = mysql_connection.cursor()
 try:
     # Extract data from MongoDB
     mongo_data = mongodb_collection.find()
+    print("mongo_data: ", mongo_data)
 
     # Transform and load data into MySQL
     for document in mongo_data:
@@ -41,7 +42,7 @@ try:
         description = document.get("description")
 
         # Prepare SQL query
-        insert_query = "INSERT INTO your_mysql_table (id, name, description) VALUES (%s, %s, %s)"
+        insert_query = "INSERT INTO Characters (id, name, description) VALUES (%s, %s, %s)"
         values = (id, name, description)
 
         # Execute the query

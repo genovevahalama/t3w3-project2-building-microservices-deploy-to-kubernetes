@@ -3,16 +3,16 @@ import pymongo
 import mysql.connector
 
 # MongoDB connection settings
-mongodb_host = "localhost"
+mongodb_host = "mongodb-container"
 mongodb_port = 27017
-mongodb_database = "your_mongodb_database"
-mongodb_collection = "your_mongodb_collection"
+mongodb_database = "hogwarts"
+mongodb_collection = "stuff"
 
 # MySQL connection settings
-mysql_host = "localhost"
-mysql_user = "your_mysql_user"
-mysql_password = "your_mysql_password"
-mysql_database = "your_mysql_database"
+mysql_host = "t3w3-project2-building-microservices-deploy-to-kubernetes-mysql-1"
+mysql_user = "admin"
+mysql_password = "admin"
+mysql_database = "hogwarts"
 
 # Connect to MongoDB
 mongodb_client = pymongo.MongoClient(mongodb_host, mongodb_port)

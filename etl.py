@@ -9,7 +9,7 @@ mongodb_database = "hogwarts"
 mongodb_collection = "stuff"
 
 # MySQL connection settings
-mysql_host = "t3w3-project2-building-microservices-deploy-to-kubernetes-mysql-1"
+mysql_host = "mysql-container"
 mysql_user = "admin"
 mysql_password = "admin"
 mysql_database = "hogwarts"

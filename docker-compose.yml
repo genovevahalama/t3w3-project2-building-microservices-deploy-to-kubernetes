@@ -25,6 +25,7 @@ services:
       - app-network
   mysql:
     image: mysql:latest
+    container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_USER: admin

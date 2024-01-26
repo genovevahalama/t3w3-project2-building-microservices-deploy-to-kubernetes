@@ -11,5 +11,5 @@ COPY . /app
 RUN pip install -r requirements.txt
 
 # Run script.py when the container launches
-#CMD ["python", "etl.py"]
+#CMD ["python", "etl2.py"]
 CMD tail -f /dev/null

@@ -16,7 +16,34 @@ services:
       - "27017:27017"
     networks:
       - app-network
-
+  etl-app:
+    build: .
+    container_name: etl-container
+    volumes:
+      - .:/app
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: hogwarts
+    ports:
+      - "3306:3306" 
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  metabase:
+    image: metabase/metabase
+    environment:
+      - MB_DB_TYPE=mysql
+      - MB_DB_DBNAME=hogwarts
+      - MB_DB_PORT=3306
+      - MB_DB_USER=admin
+      - MB_DB_PASS=admin
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
 networks:
   app-network:
     driver: bridge

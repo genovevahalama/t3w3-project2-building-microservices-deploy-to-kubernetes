@@ -1,5 +1,26 @@
-version: "3"
+version: '3'
 services:
+  python-app:
+    build: ./mongodb_loader
+    container_name: python-container
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+  mongodb:
+    image: mongo
+    container_name: mongodb-container
+    volumes:
+      - ./datamongodb:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  etl-app:
+    build: .
+    container_name: etl-container
+    volumes:
+      - .:/app
   mysql:
     image: mysql:latest
     environment:
@@ -23,3 +44,6 @@ services:
       - "3000:3000"
     depends_on:
       - mysql
+networks:
+  app-network:
+    driver: bridge

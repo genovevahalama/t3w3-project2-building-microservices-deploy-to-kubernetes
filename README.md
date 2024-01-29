@@ -34,4 +34,6 @@ show dbs
 use hogwarts 
 db.Spells.find()
 db.Characters.find()
+db.Spells.countDocuments()      #77 docs expected
+db.Characters.countDocuments()  #25 docs expected
 ```

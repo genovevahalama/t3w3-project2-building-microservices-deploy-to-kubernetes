@@ -46,18 +46,28 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
-#  metabase:
-#    image: metabase/metabase
-#    environment:
-#      - MB_DB_TYPE=mysql
-#      - MB_DB_DBNAME=hogwarts
-#      - MB_DB_PORT=3306
-#      - MB_DB_USER=admin
-#      - MB_DB_PASS=admin
-#    ports:
-#      - "3000:3000"
-#    depends_on:
-#      - mysql
+   metabase:
+    image: metabase/metabase
+    container_name: metabase-container
+    environment:
+      - MB_DB_TYPE=mysql
+      - MB_DB_DBNAME=hogwarts
+      - MB_DB_PORT=3306
+      - MB_DB_USER=admin
+      - MB_DB_PASS=admin
+      - MB_DB_HOST=mysql-container
+      - MB_DB_USE_SSL=false
+      - MB_DB_FILE=/metabase-data/metabase.db
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    volumes:
+      - metabase-data:/metabase-data
+    networks:
+      - app-network
 networks:
   app-network:
     driver: bridge
+volumes:
+  metabase-data:

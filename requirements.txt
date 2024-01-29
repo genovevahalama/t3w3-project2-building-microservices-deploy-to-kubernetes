@@ -1,6 +1,0 @@
-pymongo
-mysql-connector-python
-sqlalchemy
-pandas
-pymysql
-pyarrow

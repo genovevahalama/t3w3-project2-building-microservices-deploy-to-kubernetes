@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mongodb:
+   mongodb:
     container_name: mongodb-container
     image: mongo
     volumes:
@@ -9,18 +9,18 @@ services:
       - "27017:27017"
     networks:
       - app-network
-  init-mongodb-data-fetcher:
+   init-mongodb-data-fetcher:
     build:
-      context: .
+      context: ./mongodb_loader
       dockerfile: dockerfile
+    container_name: data-fetcher
     depends_on:
       - mongodb
-    command: python mongodb_loader/datafetch_load_mongodb.py  
     volumes:
       - ./mongodb_loader:/app/mongodb_loader 
     networks:
       - app-network
-  etl-app:
+   etl-app:
     container_name: etl-container
     build:
       context: ./mysql_loader
@@ -32,7 +32,7 @@ services:
     command: python /app/mysql_loader/datatransfer_mongodb_mysql.py
     networks:
       - app-network
-  mysql:
+   mysql:
     image: mysql:latest
     container_name: mysql-container
     environment:

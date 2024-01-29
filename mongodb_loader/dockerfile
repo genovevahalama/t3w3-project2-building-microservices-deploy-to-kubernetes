@@ -1,7 +1,6 @@
-FROM python:3.8-slim
+FROM python:3.9
 WORKDIR /app
-COPY requirements.txt /app/
-RUN ls -la /app/
+COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY datafetch_load_mongodb.py /app/
-CMD ["python", "/app/mongodb_loader/datafetch_load_mongodb.py"]
+COPY . /app
+CMD ["python", "mongodb_loader/datafetch_load_mongodb.py"]

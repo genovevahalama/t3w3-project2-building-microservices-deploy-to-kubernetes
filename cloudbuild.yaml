@@ -53,7 +53,5 @@ steps:
       - '-c'
       - |
         gcloud container clusters get-credentials kubecluster --zone us-central1-c --project $PROJECT_ID
-        kubectl set image deployment/mysql-deployment.yaml CONTAINER_NAME=gcr.io/container-412111/mysql-loader:latest
+        kubectl set image deployment/mysql-deployment.yaml CONTAINER_NAME=mysql-deployment
 
-images:
-  - 'gcr.io/container-412111/mysql-loader:latest'

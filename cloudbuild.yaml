@@ -1,0 +1,39 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/mongodb-loader', './mongodb_loader']
+    id: 'Build MongoDB Loader Image'
+    
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/mongodb-loader']
+    id: 'Push MongoDB Loader Image'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/mysql-loader', './mysql_loader']
+    id: 'Build MySQL Loader Image'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/mysql-loader']
+    id: 'Push MySQL Loader Image'
+  # #  sGKE
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'mongodb-deployment.yaml']
+  #   id: 'Deploy MongoDB'
+  #   env:
+  #   - 'CLOUDSDK_COMPUTE_ZONE=your-zone'
+  #   - 'CLOUDSDK_CONTAINER_CLUSTER=your-cluster'
+
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'mysql-deployment.yaml']
+  #   id: 'Deploy MySQL'
+
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'metabase-deployment.yaml']
+  #   id: 'Deploy Metabase'
+
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'etl-app-deployment.yaml']
+  #   id: 'Deploy ETL App'
+
+  # - name: 'gcr.io/cloud-builders/kubectl'
+  #   args: ['apply', '-f', 'init-mongodb-data-fetcher-deployment.yaml']
+  #   id: 'Deploy MongoDB Data Fetcher'

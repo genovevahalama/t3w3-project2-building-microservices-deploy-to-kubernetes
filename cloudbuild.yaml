@@ -56,7 +56,7 @@ steps:
   #       kubectl set image deployment/mysql-deployment.yaml CONTAINER_NAME=mysql-deployment
 
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['gcloud container clusters get-credentials container-412111 --zone us-central1 --project $PROJECT_ID']
+    args: ['gcloud container clusters get-credentials kubecluster --zone us-central1 --project $PROJECT_ID']
     id: 'Setup GKE Credentials'
 
   # # Деплой сервисов в GKE

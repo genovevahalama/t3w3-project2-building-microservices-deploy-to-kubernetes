@@ -1,19 +1,19 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/mongodb-loader', './mongodb_loader']
-    id: 'Build MongoDB Loader Image'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-t', 'gcr.io/$PROJECT_ID/mongodb-loader', './mongodb_loader']
+  #   id: 'Build MongoDB Loader Image'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/mongodb-loader']
-    id: 'Push MongoDB Loader Image'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'gcr.io/$PROJECT_ID/mongodb-loader']
+  #   id: 'Push MongoDB Loader Image'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/mysql-loader', './mysql_loader']
-    id: 'Build MySQL Loader Image'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['build', '-t', 'gcr.io/$PROJECT_ID/mysql-loader', './mysql_loader']
+  #   id: 'Build MySQL Loader Image'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/mysql-loader']
-    id: 'Push MySQL Loader Image'
+  # - name: 'gcr.io/cloud-builders/docker'
+  #   args: ['push', 'gcr.io/$PROJECT_ID/mysql-loader']
+  #   id: 'Push MySQL Loader Image'
   # #  sGKE
   # - name: 'gcr.io/cloud-builders/kubectl'
   #   args: ['apply', '-f', 'mongodb-deployment.yaml']
@@ -52,6 +52,6 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials kubecluster --zone us-central1-c --project $PROJECT_ID
+        gcloud container clusters get-credentials kubecluster --zone us-central1 --project $PROJECT_ID
         kubectl set image deployment/mysql-deployment.yaml CONTAINER_NAME=mysql-deployment
 

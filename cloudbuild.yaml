@@ -52,6 +52,6 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials kubecluster --zone us-central1
+        gcloud container clusters get-credentials kubecluster --zone us-central1 --project container-412111
         kubectl set image deployment/mysql-deployment.yaml CONTAINER_NAME=mysql-deployment
 

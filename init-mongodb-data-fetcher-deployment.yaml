@@ -26,6 +26,13 @@ spec:
       containers:
         - image: init-mongodb-data-fetcher
           name: data-fetcher
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           volumeMounts:
             - mountPath: /app/mongodb_loader
               name: init-mongodb-data-fetcher-claim0
